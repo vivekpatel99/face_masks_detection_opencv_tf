@@ -1,0 +1,9 @@
+opencv-contrib-python
+scikit-image
+pillow
+imutils
+scikit-learn
+matplotlib
+progressbar2
+pandas
+opendatasets
