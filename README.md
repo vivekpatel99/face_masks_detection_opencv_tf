@@ -26,4 +26,10 @@ kaggle [Face Mask Detection ~12K Images Dataset](https://www.kaggle.com/datasets
     2. using CNN model to predict the result
     3. label the faces with predicted result
 
+
+## HowTo use the script
+1. Create a virtual environment for python either using anaconda or venv 
+2. install requirements.txt file using `$$ pip install -r requirements.txt` command
+3. run the jupyter notebooks
+   
 ![image.png](https://github.com/vivekpatel99/face_masks_detection_opencv_tf/blob/master/results/result2.png)
