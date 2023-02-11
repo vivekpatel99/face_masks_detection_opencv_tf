@@ -1,6 +1,6 @@
 # face_masks_detection_opencv_tf
 
-![image.png](attachment:/results/result1.png)
+![image.png](https://github.com/vivekpatel99/face_masks_detection_opencv_tf/blob/master/results/result1.png)
 **Context**
 This dataset is used for Face Mask Detection Classification with images. The dataset consists of almost 12K images which
 are almost 328.92MB in size.
@@ -27,4 +27,4 @@ kaggle [Face Mask Detection ~12K Images Dataset](https://www.kaggle.com/datasets
     2. using CNN model to predict the result
     3. label the faces with predicted result
 
-![image.png](attachment:/results/result2.png)
+![image.png](https://github.com/vivekpatel99/face_masks_detection_opencv_tf/blob/master/results/result2.png)
