@@ -19,29 +19,6 @@ class CnnModel:
         if K.image_data_format() == "channels_first":
             input_shape = (depth, height, width)
 
-        # INPUT => [CONV => RELU => CONV => RELU => POOL] * 3 => [FC => RELU] * 2 => FC
-        # return Sequential(
-        #     [
-        #         Rescaling(1./255.),
-        #         Conv2D(16, (3, 3), padding="same",  activation='relu',input_shape=input_shape),
-        #         MaxPooling2D(pool_size=2),
-         
-        #         Conv2D(32, (3, 3), padding="same", activation='relu'),
-        #         MaxPooling2D(pool_size=2),
-
-        #         Conv2D(64, (3, 3), padding="same", activation='relu'),
-        #         MaxPooling2D(pool_size=2), 
-
-        #         Flatten(),
-        #         Dense(units=128, activation='relu'),
-        #         Dense(units=256, activation='relu'),
-        #         Dropout(0.3),
-
-   
-        #         Dense(units=512, activation='relu'),
-        #         Dense(1, activation='sigmoid'),
-        #     ]
-        # )
         model = Sequential()
 
         model.add(Conv2D(16, (3, 3), activation='relu', padding='same', input_shape=input_shape))

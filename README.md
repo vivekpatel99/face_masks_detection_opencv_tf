@@ -20,9 +20,8 @@ kaggle [Face Mask Detection ~12K Images Dataset](https://www.kaggle.com/datasets
 
 ## Steps to solve the problem
 
-1. Data Augmentation to increase dataset size
-2. Develop and train CNN model to detect face
-3. Label faces
+1. Develop and train CNN model to detect face
+2. Label faces
     1. Using Haarcascade find and crop faces
     2. using CNN model to predict the result
     3. label the faces with predicted result
