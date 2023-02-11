@@ -1,7 +1,7 @@
 from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Rescaling
 from tensorflow.keras.layers import Conv2D
 from tensorflow.keras.layers import MaxPooling2D
-from tensorflow.keras.layers import Activation
 from tensorflow.keras.layers import Flatten
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers import Dropout
@@ -20,26 +20,55 @@ class CnnModel:
             input_shape = (depth, height, width)
 
         # INPUT => [CONV => RELU => CONV => RELU => POOL] * 3 => [FC => RELU] * 2 => FC
-        model = Sequential(
-            [
-                Conv2D(16, (3, 3),padding="same",input_shape=input_shape,activation = 'relu'),
-                MaxPooling2D(pool_size=2),
-                Conv2D(32, (3, 3),padding="same",activation = 'relu'),
-                MaxPooling2D(pool_size=2),
+        # return Sequential(
+        #     [
+        #         Rescaling(1./255.),
+        #         Conv2D(16, (3, 3), padding="same",  activation='relu',input_shape=input_shape),
+        #         MaxPooling2D(pool_size=2),
+         
+        #         Conv2D(32, (3, 3), padding="same", activation='relu'),
+        #         MaxPooling2D(pool_size=2),
 
-                Conv2D(64, (3, 3),padding="same",activation = 'relu'),
-                MaxPooling2D(pool_size=2),      
-                Dropout(0.3),
+        #         Conv2D(64, (3, 3), padding="same", activation='relu'),
+        #         MaxPooling2D(pool_size=2), 
 
-                Dense(units=128, activation = 'relu'),
-                Dense(units=256, activation = 'relu'),
-                Dropout(0.3),
+        #         Flatten(),
+        #         Dense(units=128, activation='relu'),
+        #         Dense(units=256, activation='relu'),
+        #         Dropout(0.3),
 
-                Flatten(),
-                Dense(units=512, activation = 'relu'),
-                Dense(1, activation = 'sigmoid'),
-            ]
-        )
+   
+        #         Dense(units=512, activation='relu'),
+        #         Dense(1, activation='sigmoid'),
+        #     ]
+        # )
+        model = Sequential()
 
-        print(model.summary())
+        model.add(Conv2D(16, (3, 3), activation='relu', padding='same', input_shape=input_shape))
+        model.add(MaxPooling2D((2, 2)))
+
+        model.add(Conv2D(32, (3, 3), activation='relu', padding='same'))
+        model.add(MaxPooling2D((2, 2)))
+
+        model.add(Conv2D(64, (3, 3), activation='relu', padding='same'))
+        model.add(MaxPooling2D((2, 2)))
+ 
+        model.add(Conv2D(96, (3, 3), activation='relu', padding='same'))
+        model.add(MaxPooling2D((2, 2)))
+
+        model.add(Conv2D(128, (3, 3), activation='relu', padding='same'))
+        model.add(MaxPooling2D((2, 2)))
+
+        model.add(Flatten())
+     
+        model.add(Dense(1024))
+
+        model.add(Dense(64))
+
+        model.add(Dense(classes, activation='sigmoid'))
         return model
+
+    @staticmethod
+    def normalize(dataset):
+        normalization_layer = Rescaling(1./255)
+        return dataset.map(lambda x, y: (normalization_layer(x), y))
